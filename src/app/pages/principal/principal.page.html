@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mesas Disponibles</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleView()">
+        <ion-icon slot="icon-only" name="list"></ion-icon> <!-- Cambia el icono según la vista -->
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid *ngIf="vista === 'grid'">
+    <ion-row>
+      <ion-col size="6" *ngFor="let mesa of mesas">
+        <ion-button expand="block" 
+                    [color]="mesa.ocupada ? 'danger' : 'success'" 
+                    (click)="seleccionarMesa(mesa)">
+          {{ mesa.nombre }}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list *ngIf="vista === 'list'">
+    <ion-item *ngFor="let mesa of mesas">
+      <ion-label>
+        {{ mesa.nombre }}
+        <span [ngStyle]="{'color': mesa.ocupada ? 'red' : 'green'}">
+          ({{ mesa.ocupada ? 'Ocupada' : 'Libre' }})
+        </span>
+      </ion-label>
+      <ion-button slot="end" 
+                  [color]="mesa.ocupada ? 'danger' : 'success'" 
+                  (click)="seleccionarMesa(mesa)">
+        Seleccionar
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

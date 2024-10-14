@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Seleccionar Categorías</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let item of pedido; let i = index">
+      <ion-label>{{ item.categoria }}</ion-label>
+      <ion-input placeholder="Describe el pedido" [(ngModel)]="item.descripcion"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" (click)="confirmarPedido()">
+    Confirmar Pedido
+  </ion-button>
+</ion-content>
